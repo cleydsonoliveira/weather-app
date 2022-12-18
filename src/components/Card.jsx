@@ -1,21 +1,26 @@
 import React from "react";
 
-export default function Card() {
+export default function Card({ data }) {
+const {
+  location,
+  current,
+} = data;
+
   return (
-    <div className="bg-white p-6 mt-10 rounded-lg drop-shadow-md"> 
+    <div className="bg-white p-6 mt-10 rounded-lg drop-shadow-md min-w-[220]"> 
       <div className="text-center">
-        <span className="block text-xl font-bold text-slate-700">Fortaleza</span>
-        <span className="text-slate-400 text-sm font-medium">Ceará, Brasil</span>
+        <span className="block text-xl font-bold text-slate-700">{location.name}</span>
+        <span className="text-slate-400 text-sm font-medium">{`${location.region}, ${location.country}`}</span>
       </div>
 
-      <div className="flex mt-4 font-bold text-slate-700 mb-2">
-        <span className="text-7xl">27</span>
+      <div className="flex justify-center mt-4 font-bold text-slate-700 mb-2">
+        <span className="text-7xl">{current.temp_c}</span>
         <span className="text-2xl mt-2">ºC</span>
       </div>
 
-      <div className="text-center"> 
-        <span className="block">Icon</span>
-        <span className="text-slate-700 font-medium">Nublado hoje</span>
+      <div className="flex justify-center flex-col items-center"> 
+        <img src={current.condition.icon}/>
+        <span className="text-slate-700 font-medium">{current.condition.text}</span>
       </div>
     </div>
   );
